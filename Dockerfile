@@ -60,10 +60,11 @@ RUN apt-get update \
     && ln -s /opt/venv/bin/OctoBot OctoBot # Make sure we use the virtualenv \
     && chmod +x docker-entrypoint.sh
 
-VOLUME /octobot/backtesting
-VOLUME /octobot/logs
-VOLUME /octobot/tentacles
-VOLUME /octobot/user
+# Create directories manually instead of using VOLUME
+RUN mkdir -p /octobot/backtesting \
+    && mkdir -p /octobot/logs \
+    && mkdir -p /octobot/tentacles \
+    && mkdir -p /octobot/user
 
 EXPOSE 5001
 
